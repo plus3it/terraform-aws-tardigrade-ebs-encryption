@@ -4,7 +4,7 @@ provider "aws" {}
 locals {
   # kms integration
   kms_key_id     = var.create_kms_key ? module.kms.keys[var.kms_key_alias].arn : ""
-  kms_key_policy = var.create_kms_key && var.kms_key_policy == null ? data.aws_iam_policy_document.this[0].json : var.kms_key_policy
+  kms_key_policy = var.create_kms_key && var.kms_key_policy == null ? join("", data.aws_iam_policy_document.this.*.json) : var.kms_key_policy
 
   keys = [
     {
