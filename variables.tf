@@ -1,9 +1,3 @@
-variable "create_ebs_encryption" {
-  description = "Controls whether to setup the default ebs encryption"
-  type        = bool
-  default     = true
-}
-
 variable "create_kms_key" {
   description = "Controls whether to create a kms key for the ebs encryption"
   type        = bool
