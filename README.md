@@ -17,7 +17,6 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| create\_ebs\_encryption | Controls whether to setup the default ebs encryption | `bool` | `true` | no |
 | create\_kms\_key | Controls whether to create a kms key for the ebs encryption | `bool` | `true` | no |
 | kms\_key\_alias | (Optional) The display name of the kms key | `string` | `"terraform-ebs-encryption-kms-key"` | no |
 | kms\_key\_policy | (Optional) Key policy to use when creating a kms key. If no policy is provided, a default policy will be used. | `string` | `null` | no |
