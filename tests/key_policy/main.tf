@@ -9,7 +9,6 @@ module "create_ebs_encryption" {
     aws = aws
   }
 
-  create_ebs_encryption = true
   create_kms_key        = true
   kms_key_policy        = data.aws_iam_policy_document.this.json
 }

@@ -9,6 +9,5 @@ module "create_ebs_encryption" {
     aws = aws
   }
 
-  create_ebs_encryption = true
   create_kms_key        = true
 }
