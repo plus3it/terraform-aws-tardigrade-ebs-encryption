@@ -18,10 +18,6 @@ locals {
 module "kms" {
   source = "git::https://github.com/plus3it/terraform-aws-tardigrade-kms.git?ref=0.0.2"
 
-  providers = {
-    aws = aws
-  }
-
   create_keys = var.create_kms_key
   keys        = local.keys
 }

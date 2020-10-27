@@ -5,10 +5,6 @@ provider "aws" {
 module "create_ebs_encryption" {
   source = "../../"
 
-  providers = {
-    aws = aws
-  }
-
   create_kms_key = true
   kms_key_policy = data.aws_iam_policy_document.this.json
 }
