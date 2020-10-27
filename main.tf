@@ -1,5 +1,3 @@
-provider "aws" {}
-
 ##### LOCALS #####
 locals {
   # kms integration
