@@ -1,5 +1,3 @@
-provider "aws" {}
-
 ##### LOCALS #####
 locals {
   # kms integration
@@ -20,41 +18,29 @@ locals {
 module "kms" {
   source = "git::https://github.com/plus3it/terraform-aws-tardigrade-kms.git?ref=0.0.2"
 
-  providers = {
-    aws = aws
-  }
-
   create_keys = var.create_kms_key
   keys        = local.keys
 }
 
 resource "aws_ebs_encryption_by_default" "this" {
-  count = var.create_ebs_encryption ? 1 : 0
-
   enabled = true
 }
 
 resource "aws_ebs_default_kms_key" "this" {
-  count = var.create_ebs_encryption && var.create_kms_key ? 1 : 0
+  count = var.create_kms_key ? 1 : 0
 
   key_arn = local.kms_key_id
 }
 
 ##### DATA SOURCES #####
-data "aws_region" "this" {
-  count = var.create_ebs_encryption ? 1 : 0
-}
+data "aws_region" "this" {}
 
-data "aws_caller_identity" "this" {
-  count = var.create_ebs_encryption ? 1 : 0
-}
+data "aws_caller_identity" "this" {}
 
-data "aws_partition" "this" {
-  count = var.create_ebs_encryption ? 1 : 0
-}
+data "aws_partition" "this" {}
 
 data "aws_iam_policy_document" "this" {
-  count = var.create_ebs_encryption && var.create_kms_key ? 1 : 0
+  count = var.create_kms_key ? 1 : 0
 
   statement {
     sid = "Allow access through EBS for all principals in the account that are authorized to use EBS"
@@ -79,7 +65,7 @@ data "aws_iam_policy_document" "this" {
       variable = "kms:ViaService"
 
       values = [
-        "ec2.${data.aws_region.this[0].name}.amazonaws.com"
+        "ec2.${data.aws_region.this.name}.amazonaws.com"
       ]
     }
 
@@ -88,7 +74,7 @@ data "aws_iam_policy_document" "this" {
       variable = "kms:CallerAccount"
 
       values = [
-        "${data.aws_caller_identity.this[0].account_id}"
+        "${data.aws_caller_identity.this.account_id}"
       ]
     }
 
@@ -108,7 +94,7 @@ data "aws_iam_policy_document" "this" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:${data.aws_partition.this[0].partition}:iam::${data.aws_caller_identity.this[0].account_id}:root"]
+      identifiers = ["arn:${data.aws_partition.this.partition}:iam::${data.aws_caller_identity.this.account_id}:root"]
     }
 
     resources = ["*"]
@@ -135,7 +121,7 @@ data "aws_iam_policy_document" "this" {
 
     principals {
       type        = "AWS"
-      identifiers = ["arn:${data.aws_partition.this[0].partition}:iam::${data.aws_caller_identity.this[0].account_id}:root"]
+      identifiers = ["arn:${data.aws_partition.this.partition}:iam::${data.aws_caller_identity.this.account_id}:root"]
     }
 
     resources = ["*"]

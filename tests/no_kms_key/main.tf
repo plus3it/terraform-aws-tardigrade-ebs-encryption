@@ -5,10 +5,5 @@ provider "aws" {
 module "create_ebs_encryption" {
   source = "../../"
 
-  providers = {
-    aws = aws
-  }
-
-  create_ebs_encryption = true
-  create_kms_key        = false
+  create_kms_key = false
 }
