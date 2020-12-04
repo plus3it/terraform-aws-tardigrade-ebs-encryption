@@ -74,7 +74,7 @@ data "aws_iam_policy_document" "this" {
       variable = "kms:CallerAccount"
 
       values = [
-        "${data.aws_caller_identity.this.account_id}"
+        data.aws_caller_identity.this.account_id
       ]
     }
 
