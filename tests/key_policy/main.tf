@@ -1,11 +1,6 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 module "create_ebs_encryption" {
   source = "../../"
 
-  create_kms_key = true
   kms_key_policy = data.aws_iam_policy_document.this.json
 }
 

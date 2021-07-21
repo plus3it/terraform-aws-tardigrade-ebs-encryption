@@ -1,8 +1,8 @@
 ##### LOCALS #####
 locals {
   # kms integration
-  kms_key_id     = var.create_kms_key ? module.kms.keys[var.kms_key_alias].arn : ""
-  kms_key_policy = var.create_kms_key && var.kms_key_policy == null ? join("", data.aws_iam_policy_document.this.*.json) : var.kms_key_policy
+  kms_key_id     = module.kms.keys[var.kms_key_alias].arn
+  kms_key_policy = var.kms_key_policy == null ? join("", data.aws_iam_policy_document.this.*.json) : var.kms_key_policy
 
   keys = [
     {
@@ -18,7 +18,6 @@ locals {
 module "kms" {
   source = "git::https://github.com/plus3it/terraform-aws-tardigrade-kms.git?ref=2.0.0"
 
-  create_keys = var.create_kms_key
   keys        = local.keys
 }
 
@@ -27,8 +26,6 @@ resource "aws_ebs_encryption_by_default" "this" {
 }
 
 resource "aws_ebs_default_kms_key" "this" {
-  count = var.create_kms_key ? 1 : 0
-
   key_arn = local.kms_key_id
 }
 
@@ -40,8 +37,6 @@ data "aws_caller_identity" "this" {}
 data "aws_partition" "this" {}
 
 data "aws_iam_policy_document" "this" {
-  count = var.create_kms_key ? 1 : 0
-
   statement {
     sid = "Allow access through EBS for all principals in the account that are authorized to use EBS"
     actions = [
