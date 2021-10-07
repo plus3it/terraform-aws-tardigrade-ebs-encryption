@@ -19,7 +19,7 @@ module "kms" {
   source = "git::https://github.com/plus3it/terraform-aws-tardigrade-kms.git?ref=2.0.0"
   count  = var.create_kms_key ? 1 : 0
 
-  keys        = local.keys
+  keys = local.keys
 }
 
 resource "aws_ebs_encryption_by_default" "this" {
