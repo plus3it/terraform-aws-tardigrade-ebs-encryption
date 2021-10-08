@@ -5,21 +5,6 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 10
-- package-ecosystem: terraform
-  directory: "/tests/create_ebs_encryption"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: terraform
-  directory: "/tests/key_policy"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: terraform
-  directory: "/tests/no_kms_key"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
 - package-ecosystem: docker
   directory: "/"
   schedule:
