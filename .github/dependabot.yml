@@ -9,8 +9,7 @@ updates:
   - package-ecosystem: terraform
     directory: "/"
     schedule:
-      interval: daily
-  open-pull-requests-limit: 10
+      interval: weekly
   # Maintain dependencies for dockerfiles
   - package-ecosystem: docker
     directory: /
