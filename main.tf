@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "this" {
       variable = "kms:ViaService"
 
       values = [
-        "ec2.${data.aws_region.this.name}.amazonaws.com"
+        "ec2.${data.aws_region.this.region}.amazonaws.com"
       ]
     }
 
