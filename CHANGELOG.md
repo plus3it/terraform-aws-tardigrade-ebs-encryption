@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-### 2.0.0
+### [3.0.0](https://github.com/plus3it/terraform-aws-tardigrade-ebs-encryption/releases/tag/3.0.0)
+
+**Released**: 2025.12.30
+
+**Summary**:
+
+*   Addresses deprecation warning for aws_region "name" attribute
+
+### [2.0.0](https://github.com/plus3it/terraform-aws-tardigrade-ebs-encryption/releases/tag/2.0.0)
 
 **Commit Delta**: N/A
 
@@ -16,7 +24,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
     argument was deprecated in v2 of the kms module. This requires `state mv` when
     updating to v2 of the ebs-encryption module.
 
-### 0.0.0
+### [0.0.0](https://github.com/plus3it/terraform-aws-tardigrade-ebs-encryption/releases/tag/0.0.0)
 
 **Commit Delta**: N/A
 
