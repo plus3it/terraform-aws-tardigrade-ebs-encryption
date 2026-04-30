@@ -8,4 +8,4 @@ concurrency:
 
 jobs:
   test:
-    uses: plus3it/actions-workflows/.github/workflows/test.yml@09879910a1e194e51e7407474ecdb0836ed01de1
+    uses: plus3it/actions-workflows/.github/workflows/test.yml@ddd67e99878a285f728de398c1116151c2d7791a
